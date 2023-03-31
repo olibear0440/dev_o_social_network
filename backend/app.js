@@ -23,8 +23,20 @@ app.use((req, res, next) => {
     next();
   });
 
+//import des routes
+const registerRoutes = require("./routes/register");
+//const userRoutes = require("./routes/user");
+//const postRoutes = require("./routes/post");
+//const commentRoutes = require("./routes/comment");
 
 app.use(morgan("dev"));
+app.use(express.json());
+
+//les routes
+//app.use("/users", userRoutes);
+//app.use("/posts", postRoutes);
+app.use("/registers", registerRoutes);
+//app.use("/comments", commentRoutes);
 
 //export de l'application
 module.exports = app;
