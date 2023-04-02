@@ -86,7 +86,7 @@
             <span class="btnLoading" v-if="status == 'loading'"
               >Connexion en cours...</span
             >
-            <span class="btnValidated" v-else>Connexion</span>
+            <span class="btnValidated" v-else>Se connecter</span>
           </button>
           <button
             @click="btnCreateAccount()"
@@ -264,7 +264,7 @@ span {
 .errorLogin {
   font-size: 14px;
   color: red;
-  margin-top: 0;
+  //margin-top: 0;
 }
 #errorRegxMdp {
   color: rgb(51, 103, 214);
