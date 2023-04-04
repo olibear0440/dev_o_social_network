@@ -1,5 +1,6 @@
 <template>
   <div class="postBloc">
+    <Header />
     <!--<Logout />-->
     <div class="adminBloc" v-if="currentUser.userRole == 1">
       <div class="adminBlocTitre">
@@ -87,13 +88,11 @@
           <div class="postFooterInfos">
             <router-link class="linkBtnComment" :to="`/posts/${post.id}`">
               <div class="postComments">
-                <p>Commenter</p>
                 <i class="fa fa-commenting-o fa-lg" aria-hidden="true"></i>
                 <p class="commentNbr">{{ post.comCount }}</p>
               </div>
             </router-link>
             <div class="likeIcon" @click="btnPostLike(post.id)">
-              <p class="likeText">j'aime</p>
               <span
                 v-if="post.userLike != 1"
                 class="fa fa-thumbs-o-up fa-lg"
@@ -120,11 +119,15 @@
 </template>
 
 <script>
+import Header from "../components/Header.vue";
 import { mapState } from "vuex";
 // @ is an alias to /src
 
 export default {
   name: "PostView",
+  components: {
+    Header,
+  },
 
   data: () => {
     return {
@@ -230,7 +233,7 @@ h1 {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-top: 5px;
 }
 .myProfilTitle {
@@ -243,6 +246,7 @@ h1 {
 }
 .myProfilTitle h2 {
   margin: 0;
+  color: #2c3e50;
 }
 .myProfilBloc {
   display: flex;
@@ -261,7 +265,7 @@ h1 {
   align-items: baseline;
   padding: 5px;
   width: 100%;
-  color: #797676;
+  color: #2c3e50;
 }
 
 .profilPassword {
@@ -270,11 +274,12 @@ h1 {
   align-items: stretch;
   padding: 5px;
   width: 100%;
-  color: #797676;
+  color: #2c3e50;
 }
 .updatePassword {
   width: 100%;
   padding: 10px;
+  color: #2c3e50;
 }
 .formChangeMdp {
   display: flex;
@@ -310,6 +315,7 @@ h1 {
   font-family: inherit;
   cursor: pointer;
   border: 1px solid #cecece;
+  color: #2c3e50;
 }
 #updateMdpError {
   font-size: 12px;
@@ -330,9 +336,14 @@ h1 {
 .inputError {
   background-color: #ffc0c0;
 }
+input:focus {
+  outline: none !important;
+  border: 1px solid red;
+  box-shadow: 0 0 10px #678fb9;
+}
 .btnCreatePost {
-  background-color: rgb(51, 103, 214);
-  border: 1px solid rgb(51, 103, 214);
+  background-color: #678fb9;
+  border: 1px solid #678fb9;
   border-radius: 3px;
   color: white;
   display: block;
@@ -349,12 +360,14 @@ h1 {
 }
 .adminBlocTitre h2 {
   margin: 0;
+  color: #2c3e50;
 }
 .adminBloc {
   height: 120px;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   width: 100%;
+  margin-top: 5px;
 }
 .userProfilBloc {
   padding: 0px 30px;
@@ -388,6 +401,7 @@ h1 {
 }
 .postsTitle h2 {
   margin: 0;
+  color: #2c3e50;
 }
 .usersPosts {
   padding: 10px 30px;
@@ -404,12 +418,14 @@ h1 {
   font-size: 14px;
 }
 .postsInfos {
-  border-bottom: 2px solid rgba(253, 45, 1);
+  border-bottom: 2px solid #678fb9;
   padding: 5px;
+  margin: 5px;
   width: auto;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
 }
 .title {
@@ -417,27 +433,33 @@ h1 {
   width: auto;
   font-weight: bold;
   font-size: 1.5em;
-  margin: 0;
+  margin: 0 0 5px 0;
+  color: #2c3e50;
 }
 .description {
   text-align: start;
   width: auto;
-  color: rgb(51, 103, 214);
+  color: #678fb9;
+  margin-bottom: 20px;
 }
 .blocImg {
   border-radius: 5px;
-  height: auto;
-  width: 100%;
+  max-height: 400px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.postImg {
-  border-radius: 5px;
-  width: 100%;
-  height: auto;
+.postsImg {
+  width: 60%;
+  height: 100%;
   object-fit: cover;
+  margin: 0 auto;
 }
 .linkBtnComment {
   text-decoration: none;
-  color: black;
+  color: #2c3e50;
   font-size: 1em;
   font-weight: lighter;
   padding-left: 0;
@@ -465,6 +487,7 @@ h1 {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  margin-top: 20px;
 }
 .likeIcon {
   border: 1px solid #cecece;
@@ -480,15 +503,23 @@ h1 {
 .likeIcon:hover {
   background-color: #f7f7f7;
 }
+.fa-commenting-o {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
 .fa-thumbs-o-up {
   text-decoration: none;
-  color: black;
+  color: rgba(0, 0, 0, 0.5);
   padding: 5px;
 }
 .fa-thumbs-up {
   text-decoration: none;
-  color: rgb(51, 103, 214);
+  color: #678fb9;
   padding: 5px;
+}
+.commentNbr {
+  color: rgba(0, 0, 0, 0.5);
 }
 .btnDeletePost {
   border: 1px solid #cecece;
@@ -549,7 +580,7 @@ h1 {
     padding-right: 10px;
   }
   .textMail {
-    width: 50%;
+    width: 100%;
   }
   .postComments,
   .likeIcon {

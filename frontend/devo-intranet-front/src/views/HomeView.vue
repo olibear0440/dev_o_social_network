@@ -64,7 +64,7 @@
             class="errorLogin"
             v-if="mode == 'loginAccount' && status == 'error_login'"
           >
-            Echec de la connection; Email et/ou mot de passe non valide
+            Email et/ou mot de passe non valide
           </p>
 
           <p
@@ -161,7 +161,7 @@ export default {
       if (regexs.some((regex) => !regex.test(this.mdp))) {
         document.getElementById("password").classList.add("inputError");
         errorMdp.innerHTML =
-          "Le mot de passe doit contenir 8 caractères minimum, une majuscule, une majuscule, un chiffre et un symbole";
+          "Le mot de passe doit contenir au minimum, 8 caractères, une majuscule, une minuscule, un chiffre et un symbole";
         return;
       }
       let self = this;
@@ -214,6 +214,7 @@ export default {
 }
 #formTitre h1 {
   margin: 0;
+  color: #2c3e50;
 }
 
 .formSignup {
@@ -227,11 +228,12 @@ export default {
   padding-bottom: 20px;
 }
 .switchLogin {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
+  color: #2c3e50;
 }
 span {
-  color: blue;
+  color: #1e7fe6;
   text-decoration-line: underline;
   cursor: pointer;
 }
@@ -254,6 +256,12 @@ span {
   width: auto;
 }
 
+input:focus {
+  outline: none !important;
+  border: 1px solid red;
+  box-shadow: 0 0 10px #678fb9;
+}
+
 .btnLoading,
 .btnValidated {
   text-decoration: none;
@@ -274,8 +282,8 @@ span {
 }
 
 .confirmForm {
-  background-color: rgb(51, 103, 214);
-  border: 2px solid rgb(51, 103, 214);
+  background-color: #678fb9;
+  border: 2px solid #678fb9;
   color: white;
   display: block;
   padding: 10px;
@@ -288,14 +296,12 @@ span {
   .registerBloc {
     width: auto;
     padding-top: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
     height: auto;
   }
-  .registerLogo {
-    width: 80px;
-    top: 15px;
-  }
-  .homeLogo {
-    border-radius: 50%;
+  .mainTitle {
+    margin-bottom: 20px;
   }
   .createAccount {
     top: 100px;
